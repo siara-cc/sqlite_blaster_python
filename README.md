@@ -28,7 +28,7 @@ The performance of this repo was compared with the Sqlite official library, LMDB
 
 RocksDB performs much better than other choices and performs consistently for over billion entries, but it is quite slow initially.
 
-The chart data can be found [here](https://github.com/siara-cc/sqlite_blaster/blob/master/SqliteBlasterPerformanceLineChart.xlsx?raw=true).
+The chart data can be found [here](https://github.com/siara-cc/sqlite_blaster_python/blob/master/SqliteBlasterPerformanceLineChart.xlsx?raw=true).
 
 # Building and running tests
 
@@ -196,7 +196,7 @@ Sqlite Index Blaster and its command line tools are dual-licensed under the MIT 
 
 # Credits
 
-- The template for developing this Python binding was taken from the `pybind` repo https://github.com/pybind/cmake_example
+- The template for developing this Python binding was taken from the `pybind` repo https://github.com/pybind/cmake_example (See PYBIND_LICENSE file)
 - `ChatGPT` was used in quickly figuring out the intricacies of `pybind11`
 
 # Support
