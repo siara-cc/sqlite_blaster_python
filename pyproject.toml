@@ -7,6 +7,25 @@ requires = [
 ]
 build-backend = "setuptools.build_meta"
 
+[project]
+name = "sqlite_blaster_python"
+version = "0.0.3"
+authors = [
+  { name="Arundale Ramanathan", email="arun@siara.cc" },
+]
+description = "A library for creating huge Sqlite indexes at breakneck speeds"
+readme = "README.md"
+requires-python = ">=3.7"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+
+[project.urls]
+"Homepage" = "https://github.com/siara-cc/sqlite_blaster_python"
+"Bug Tracker" = "https://github.com/siara-cc/sqlite_blaster_python/issues"
+
 [tool.mypy]
 files = "setup.py"
 python_version = "3.7"

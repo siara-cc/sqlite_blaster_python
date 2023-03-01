@@ -7,6 +7,10 @@ from pathlib import Path
 from setuptools import Extension, setup
 from setuptools.command.build_ext import build_ext
 
+from pathlib import Path
+this_directory = Path(__file__).parent
+long_description = (this_directory / "README.md").read_text()
+
 # Convert distutils Windows platform specifiers to CMake -A arguments
 PLAT_TO_CMAKE = {
     "win32": "Win32",
@@ -127,11 +131,12 @@ class CMakeBuild(build_ext):
 # logic and declaration, and simpler if you include description/version in a file.
 setup(
     name="sqlite_blaster_python",
-    version="0.0.1",
+    version="0.0.3",
     author="Arundale Ramanathan",
     author_email="arun@siara.cc",
     description="Python binding for sqlite_blaster project",
-    long_description="",
+    long_description=long_description,
+    long_description_content_type='text/markdown',
     ext_modules=[CMakeExtension("sqlite_blaster_python")],
     cmdclass={"build_ext": CMakeBuild},
     zip_safe=False,

@@ -24,11 +24,11 @@ Furthermore, the other choices don't have the same number of IDEs or querying ab
 
 The performance of this repo was compared with the Sqlite official library, LMDB and RocksDB under similar conditions of CPU, RAM and NVMe disk and the results are shown below:
 
-![Performance](misc/performance.png?raw=true)
+![Performance](https://raw.githubusercontent.com/siara-cc/sqlite_blaster_python/main/misc/performance.png)
 
 RocksDB performs much better than other choices and performs consistently for over billion entries, but it is quite slow initially.
 
-The chart data can be found [here](https://github.com/siara-cc/sqlite_blaster_python/blob/master/SqliteBlasterPerformanceLineChart.xlsx?raw=true).
+The chart data can be found [here](https://raw.githubusercontent.com/siara-cc/sqlite_blaster_python/main/misc/SqliteBlasterPerformanceLineChart.xlsx).
 
 # Building and running tests
 
