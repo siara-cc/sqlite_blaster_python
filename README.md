@@ -66,10 +66,10 @@ Note: The cache size is used as 40kb in these examples, but in real life 32mb or
 In this mode, a table is created with just 2 columns, `key` and `value` as shown below:
 
 ```python
-import sqlite_blaster_python
+import sqlite_blaster_python as m
 
 col_names = "key, value"
-sqib = sqlite_blaster_python.sqlite_index_blaster(2, 1, col_names, "imain", 4096, 40000, "kv_idx.db")
+sqib = m.sqlite_index_blaster(2, 1, col_names, "imain", 4096, 40000, "kv_idx.db")
 sqib.put_string("hello", "world")
 sqib.close()
 ```
@@ -93,10 +93,10 @@ COMMIT;
 To retrieve the inserted values, use `get` method as shown below
 
 ```python
-import sqlite_blaster_python
+import sqlite_blaster_python as m
 
 col_names = "key, value"
-sqib = sqlite_blaster_python.sqlite_index_blaster(2, 1, col_names, "imain", 4096, 40, "kv_idx.db")
+sqib = m.sqlite_index_blaster(2, 1, col_names, "imain", 4096, 40, "kv_idx.db")
 sqib.put_string("hello", "world")
 print("Value of hello is", sqib.get_string("hello", "not_found"))
 sqib.close()
@@ -109,13 +109,13 @@ The second parameter to `get_string` is for specifying what value is to be retur
 In this mode, a table is created with just 2 columns, `key` and `doc` as shown below:
 
 ```python
-import sqlite_blaster_python
+import sqlite_blaster_python as m
 
 json1 = '{"name": "Alice", "age": 25, "email": "alice@example.com"}'
 json2 = '{"name": "George", "age": 32, "email": "george@example.com"}'
 
 col_names = "key, doc"
-sqib = sqlite_blaster_python.sqlite_index_blaster(2, 1, col_names, "doc_index", 4096, 40, "doc_store.db")
+sqib = m.sqlite_index_blaster(2, 1, col_names, "doc_index", 4096, 40, "doc_store.db")
 sqib.put_string("primary_contact", json1)
 sqib.put_string("secondary_contact", json2)
 sqib.close()
@@ -134,10 +134,10 @@ WHERE key = 'primary_contact';
 This repo can be used to create regular tables with primary key(s) as shown below:
 
 ```python
-import sqlite_blaster_python
+import sqlite_blaster_python as m
 
 col_names = "student_name, age, maths_marks, physics_marks, chemistry_marks, average_marks"
-sqib = sqlite_blaster_python.sqlite_index_blaster(6, 2, col_names, "student_marks", 4096, 40, "student_marks.db")
+sqib = m.sqlite_index_blaster(6, 2, col_names, "student_marks", 4096, 40, "student_marks.db")
 
 sqib.put_rec(["Robert", 19, 80, 69, 98, round((80+69+98)/3, 2)])
 sqib.put_rec(["Barry", 20, 82, 99, 83, round((82+99+83)/3, 2)])
