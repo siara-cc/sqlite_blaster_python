@@ -1,5 +1,6 @@
 #include <pybind11/pybind11.h>
 #include <pybind11/stl.h>
+#include "sqlite_blaster/src/util.h"
 #include "sqlite_blaster/src/sqlite_index_blaster.h"
 
 #define STRINGIFY(x) #x
@@ -49,7 +50,7 @@ py::list get_values(sqlite_index_blaster& self, uint8_t *rec, int rec_len) {
     py::list result;
     int8_t vlen;
     int col_type_or_len, col_len, col_type;
-    int hdr_len = self.read_vint32(rec, &vlen);
+    int hdr_len = util::read_vint32(rec, &vlen);
     int hdr_pos = vlen;
     uint8_t *data_ptr = rec + hdr_len;
     col_len = vlen = 0;
@@ -60,7 +61,7 @@ py::list get_values(sqlite_index_blaster& self, uint8_t *rec, int rec_len) {
             break;
         if (hdr_pos >= hdr_len)
             break;
-        col_type_or_len = self.read_vint32(rec + hdr_pos, &vlen);
+        col_type_or_len = util::read_vint32(rec + hdr_pos, &vlen);
         col_len = self.derive_data_len(col_type_or_len);
         col_type = self.derive_col_type(col_type_or_len);
         switch (col_type) {
@@ -81,32 +82,32 @@ py::list get_values(sqlite_index_blaster& self, uint8_t *rec, int rec_len) {
                 result.append(py::int_(*data_ptr));
                 break;
             case SQLT_TYPE_INT16: {
-                    int int_val = self.read_uint16(data_ptr);
+                    int int_val = util::read_uint16(data_ptr);
                     result.append(py::int_(int_val));
                 }
                 break;
             case SQLT_TYPE_INT24: {
-                    int32_t int_val = self.read_uint24(data_ptr);
+                    int32_t int_val = util::read_uint24(data_ptr);
                     result.append(py::int_(int_val));
                 }
                 break;
             case SQLT_TYPE_INT32: {
-                    int32_t int_val = self.read_uint32(data_ptr);
+                    int32_t int_val = util::read_uint32(data_ptr);
                     result.append(py::int_(int_val));
                 }
                 break;
             case SQLT_TYPE_INT48: {
-                    int int_val = self.read_int48(data_ptr);
+                    int int_val = util::read_int48(data_ptr);
                     result.append(py::int_(int_val));
                 }
                 break;
             case SQLT_TYPE_INT64: {
-                    int64_t int_val = self.read_uint64(data_ptr);
+                    int64_t int_val = util::read_uint64(data_ptr);
                     result.append(py::int_(int_val));
                 }
                 break;
             case SQLT_TYPE_REAL: {
-                    double dbl_val = self.read_double(data_ptr);
+                    double dbl_val = util::read_double(data_ptr);
                     result.append(PyFloat_FromDouble(dbl_val));
                 }
                 break;
@@ -130,7 +131,7 @@ PYBIND11_MODULE(sqlite_blaster_python, m) {
     )pbdoc";
     py::class_<sqlite_index_blaster>(m, "sqlite_index_blaster")
         .def(py::init<int, int, 
-                std::vector<std::string>, const char *,
+                std::string, std::string,
                 int, int,
                 const char *>())
         .def("close", &sqlite_index_blaster::close)
