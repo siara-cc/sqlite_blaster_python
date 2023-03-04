@@ -1,10 +1,12 @@
 import sys
+
 sys.path.insert(0, '.')
+sys.path.insert(0, 'src')
 
 import sqlite_blaster_python as m
 
 def test_basic():
-    col_names = ["key", "value"]
+    col_names = "key, value"
     sqib = m.sqlite_index_blaster(2, 1, col_names, "imain", 4096, 40, "kv_idx.db")
     sqib.put_string("hello", "world")
     assert sqib.get_string("hello", "not_found") == "world"
@@ -13,7 +15,7 @@ def test_basic():
 
 def test_table():
     import sqlite_blaster_python
-    col_names = ["student_name", "age", "maths_marks", "physics_marks", "chemistry_marks", "average_marks"]
+    col_names = "student_name, age, maths_marks, physics_marks, chemistry_marks, average_marks"
     sqib = sqlite_blaster_python.sqlite_index_blaster(6, 2, col_names, "student_marks", 4096, 40, "student_marks.db")
     test_rec1 = ["Robert", 19, 80, 69, 98, round((80+69+98)/3, 2)]
     sqib.put_rec(test_rec1)
@@ -28,4 +30,4 @@ def test_table():
     sqib.close()
 
 def test_main():
-    assert m.__version__ == "0.0.1"
+    assert m.__version__ == "0.0.4"

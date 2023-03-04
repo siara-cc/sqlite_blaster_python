@@ -131,7 +131,7 @@ class CMakeBuild(build_ext):
 # logic and declaration, and simpler if you include description/version in a file.
 setup(
     name="sqlite_blaster_python",
-    version="0.0.3",
+    version="0.0.4",
     author="Arundale Ramanathan",
     author_email="arun@siara.cc",
     description="Python binding for sqlite_blaster project",
