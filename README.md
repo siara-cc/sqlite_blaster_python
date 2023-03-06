@@ -1,5 +1,8 @@
 # Sqlite Index Blaster for Python
 
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/d0babd2e72414c08b63cfe84a4aa83b6)](https://www.codacy.com/gh/siara-cc/sqlite_blaster_python/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=siara-cc/sqlite_blaster_python&amp;utm_campaign=Badge_Grade)
+[![DOI](https://zenodo.org/badge/607163185.svg)](https://zenodo.org/badge/latestdoi/607163185)
+
 This library provides API for creating huge Sqlite indexes at breakneck speeds for millions of records much faster than the official SQLite library by leaving out crash recovery.
 
 This repo exploits a [lesser known feature of the Sqlite database file format](https://www.sqlite.org/withoutrowid.html) to store records as key-value pairs or documents or regular tuples.
