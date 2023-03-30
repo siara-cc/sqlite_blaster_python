@@ -38,6 +38,8 @@ The chart data can be found [here](https://raw.githubusercontent.com/siara-cc/sq
 Clone this repo and run:
 
 ```sh
+git submodule init
+git submodule update
 python3 setup.py test
 ```
 
